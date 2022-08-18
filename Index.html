@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.typekit.net/wce7xkw.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  </head>
+  <body>
+    <div class="main-screen" >   
+ 
+      <!--ADMIN INTERFACE-->
+        <!--ADMIN LOGIN-->
+        <div class = "adminUI" id="adminUI" style="text-align: center;">
+          <i onclick="go_back('6');" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;margin: 20px;"><center>ADMIN LOGIN</center></h1>
+          <input type = "Password" placeholder="Enter Admin password" id="apass" style="width: 250px;">
+          <p id="adminwrpass" style="color:red;"></p>
+          <loginbutton type = "loginbutton" onclick="alogin()">Login</loginbutton>
+        </div>
+        <!--ADMIN MENU-->
+        <div class = "admin_menu" id="admin_menu" style="text-align: center;">
+          <i onclick="go_back('4');" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;margin: 20px;">ADMIN MENU</h1>
+          <button type = "button" onclick="add_doc()" style="width:250px;font-size: 20px;">Add Doctor</button>
+          <button type = "button" onclick="del_doc()" style="width: 250px;font-size: 20px;">Remove Doctor</button>
+          <button type = "button" onclick="view_all_appointments()" style="width:250px;font-size: 20px;">View All Appointments</button>
+        </div>      
+        <!--ADD DOCTOR-->
+        <div class="add_doc" id="add_doc">
+          <i onclick="go_back('0');" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;text-align: center;"><center>ADD NEW DOCTOR</center></h1>
+          <div class = "doc_menu">
+            <input type = "text" placeholder="Enter Doctor Name" id="doc_name" oninput="check_button_2()" style="width: 250px;">
+            <br><br>
+            <input type = "department" placeholder="Enter Department" id="doc_department" oninput="check_button_2()" style="width: 250px;">
+          </div>
+          <loginbutton type = "loginbutton" onclick="add_doc_submit();doc_added_submit();" disabled="True" id ="add_doc_submit">Submit</loginbutton>           
+        </div>
+        <div class="doc_added" id="doc_added">
+          <h2>Doctor has been added successfully</h2>
+          <center><button type="button" onclick="ok_submitted_new_doc()" id ="doc_added_submit">OK</button></center>
+        </div>
+        <!--REMOVE DOCTOR-->
+        <div id = "Doctor_Table" class = "Doctor_Table_container">
+          <i onclick="go_back('1');" class="fi-br-arrow-left"></i>
+          <ul class = "Doctor_Table">
+            <li>
+              <div class = "Doctor_Column_Header">
+                    <div class = "Table_Column"  style="flex-basis: 2%;">
+                        <h1>ID</h1>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 50%;">
+                        <h1>Doctor Name</h1>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 50%;">
+                        <h1>Department</h1>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 25%;">
+                        <h1>Delete</h1>
+                    </div>
+                </div>
+            </li>
+            <div id="Doc_data">
+
+            </div>
+        </ul>
+        </div>
+        <div class="removed_doc" id="removed_doc">
+          <h2>Doctor has been removed successfully</h2>
+          <center><button type = "button" onclick="ok_removed_doc()" id ="removed_doc_submit">OK</button></center>
+        </div>
+        <!--VIEW ALL APPOINTMENTS-->
+        <div class="view_all_appointments" id="view_all_appointments">
+          <i onclick="go_back('2')" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;text-align: center;"><center>APPOINTMENTS</h1></center>
+          <p><b>Department:</b></p>
+          <select id="department" onchange="activ_doc();check_button_3()"> 
+            <option value="">Select Department</option>
+          </select>
+          <br><br>
+          <p><b>Doctor</b></p>
+          <select id="doctor" onchange="check_button_3()"> 
+            <option value="">Select Doctor</option>
+          </select>
+          <button type = "button" onclick="view_all_appointments_submit();" disabled="True" id ="view_all_appointments_submit" style="width: 250px;">Submit</button>
+        </div>
+        <div id = "apps_table" class = "apps_table_container">
+          <center><h1>APPOINTMENTS</h1></center>
+          <ul>
+            <li>
+              <div class = "Doctor_Column_Header">
+                <div class = "Table_Column" style="flex-basis: 2%;">
+                  <h2>ID</h2>
+                  </div>
+                  <div class = "Table_Column" style="flex-basis: 15%;">
+                      <h2>Department</h2>
+                  </div>
+                  <div class = "Table_Column" style="flex-basis: 25%;">
+                      <h2>Doctor</h2>
+                  </div>
+                  <div class = "Table_Column" style="flex-basis: 25%;">
+                      <h2>Patient Name</h2>
+                  </div>
+                  <div class = "Table_Column" style="flex-basis: 25%;">
+                      <h2>Mobile No.</h2>
+                  </div>
+                  <div class = "Table_Column" style="flex-basis: 25%;">
+                      <h2>Date</h2>
+                  </div>
+                  <div class = "Table_Column" style="flex-basis: 25%;">
+                      <h2>Time</h2>
+                </div>
+                </div>
+              </li>
+              <div id="app_data">
+              </div>
+          </ul>
+          
+          <i onclick="go_back('10')" class="fi-br-arrow-left"></i>
+        </div>
+
+      <!--MAIN MENU-->
+      <div id="loginmenu">
+        <div class="heading">        
+          <h2>RADIANT HEALTHCARE</h2>
+        </div>
+        <center><button onclick="adminLogin()" style="font-size: 25px;width: 150px;">ADMIN LOGIN</button></center>
+        <center><button onclick="patientLogin()" style="font-size: 25px;width: 150px;">PATIENT LOGIN</button></center>
+      </div>
+
+      <!--PATIENT INTERFACE-->
+        <!--PATIENT LOGIN-->
+        <div class = "loginUI" id="loginUI" style="text-align: center;">
+          <i onclick="go_back('7')" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;margin: 20px;"><center>PATIENT LOGIN</center></h1>
+          <input type = "text" placeholder="Enter e-mail ID" id="uname" style="width: 250px;">
+          <br><br>
+          <input type = "password" placeholder="Enter password" id="pass" style="width: 250px;">
+          <p id="userwrpass" style="color:red;"></p>
+          <br>
+          <loginbutton type = "loginbutton" onclick="ulogin()">Login</loginbutton>
+          <br>
+          <p>Don't have an account? <a href="#" onclick="register()">Register</a></p>
+        </div>
+        <!--PATIENT REGISTER-->
+        <div class = "loginUI" id="registerUI" style="text-align: center;">
+          <i onclick="go_back('11')" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;margin: 20px;"><center>REGISTRATION</center></h1>
+          <input type = "text" placeholder="Enter e-mail ID" id="uname1" style="width: 250px;">
+          <br><br>
+          <input type = "password" placeholder="Enter password" id="pass1" style="width: 250px;">
+          <br><br>
+          <input type = "password" placeholder="Confirm password" id="pass2" style="width: 250px;">
+          <p id="regwrpass" style="color:red;"></p>
+          <br>
+          <loginbutton type = "button" onclick="uregister()">Register</loginbutton>
+          <br>
+          <p>Already have an account? <a href="#" onclick="patientLogin()">Login</a></p>
+        </div>
+        <div class="registered" id="registered">
+          <h2>Patient has been registered successfully</h2>
+          <center><button type = "button" onclick="ok_registered()" id ="registered_submit">OK</button></center>
+        </div>
+        <!--PATIENT MENU SCREEN-->
+        <div class = "userUI" id = "userUI">
+          <i onclick="go_back('5');" class="fi-br-arrow-left"></i>
+          <h1 style="top: 40px;position: absolute;margin: 20px;"><center>PATIENT MENU</center></h1>
+          <button type = "button" onclick="book_app()" style="width:250px;font-size: 20px;">Book Appointment</button>
+          <button type = "button" onclick="check_apps()" style="width:250px;font-size: 20px;">Current Appointment</button>
+          <b><p id="noapps" style="color:red;"></p></b>
+        </div>
+        <!--BOOK APPOINTMENT-->
+        <div class="book_app" id="book_app">
+          <i onclick="go_back('3');" class="fi-br-arrow-left"></i>
+          <center><h1 style="top: 40px;position: absolute;margin: 20px;">APPOINTMENT</h1></center>
+          <br><br>
+          <p><b>Department:</b></p>
+          <select id="departments" onchange="activate_doctors();check_button_1()"> 
+            <option value="">Select Department</option>
+          </select>
+          <br><br>
+          <p><b>Doctor:</b></p>
+          <select id="doctors" disabled="True" onchange="check_button_1()">  
+            <option value="">Select Doctor</option>
+          </select>
+          <br><br>
+          <p><b>Patient Name:</b></p>
+          <input type = "text" placeholder="Enter Full Name" id="p_name" oninput="check_button_1()">
+          <br><br>
+          <p><b>Mobile Number:</b></p>
+          <input type = "number" placeholder="Enter Mobile Number" id="p_phone" oninput="check_button_1()">
+          <br><br>
+          <p><b>Date:</b></p>
+          <input type = "date" id="app_date" oninput="check_button_1()">
+          <br><br>
+          <p><b>Time:</b></p>
+          <input type = "time" id="app_time" oninput="check_button_1()">
+          <br><br>   
+          <b><p id="alrbookapp" style="color:red;"></p></b>
+          <center><button type = "button" onclick="book_app_submit();"  disabled="True" id ="book_app_submit" style="width: 260px;font-size: 20px;">Submit</button></center>
+        </div>
+        <div class="app_booked" id="app_booked">
+          <h2>Appointment has been booked successfully</h2>
+          <center><button type = "button" onclick="ok_submitted_app()" id ="app_booked_submit">OK</button></center>
+        </div>
+        <!--VIEW APPOINTMENT-->
+        <div class="view_app" id = "view_app">
+          <h1 style="top: 40px;">APPOINTMENT</h1>
+          <div class = "apps_data" id = "apps_data">
+          </div>
+          <br><br>
+          <button type = "button" onclick="res_app();" style="width: 250px;font-size: 15px;">Reschedule Appointment</button>
+          <br>
+          <button type = "button" onclick="cancel_app();" style="width: 250px;font-size: 15px;">Cancel Appointment</button>
+          <i onclick="go_back('8');" class="fi-br-arrow-left"></i>
+        </div>
+        <!--RESCHEDULE APPOINTMENT-->
+        <div class="res_app" id="res_app">
+          <i onclick="go_back('12');" class="fi-br-arrow-left"></i>
+          <center><h1 style="top: 40px;">RESCHEDULE</h1></center>
+          <br><br>
+          <p><b>Date:</b></p>
+          <input type = "date" id="res_app_date" oninput="check_button_4()" style="width: 250px;">
+          <br><br>
+          <p><b>Time:</b></p>
+          <input type = "time" id="res_app_time" oninput="check_button_4()"  style="width: 250px;">         
+          <button type = "button" onclick="res_app_submit();app_rescheduled_submit();" disabled="True" id = "res_app_submit_button" style="width: 280px;">Submit</button>
+        </div> 
+        <div class="app_rescheduled" id="app_rescheduled">
+          <h2>Appointment has been rescheduled successfully</h2>
+          <center><button type = "button" onclick="ok_rescheduled_app()" id ="app_rescheduled_submit">OK</button></center>
+        </div>
+        <!--CANCEL APPOINTMENT-->
+        <div class="cancel_app" id="cancel_app">
+          <h2>Are you sure you want to cancel this appointment?</h2>
+          <center><button type = "button" onclick="cancel_app_submit();app_cancelled_submit();" id = "cancel_app_submit_button" style="width: 150px;font-size: 15px;">Yes</button></center>
+          <center><button type = "button" onclick="go_back('9');" style="width: 150px;font-size: 15px;">No</button></center>
+        </div>
+        <div class="app_cancelled" id="app_cancelled">
+          <h2>Appointment has been cancelled successfully</h2>
+          <center><button type = "button" onclick="ok_cancelled_app()" id ="app_cancelled_submit">OK</button></center>
+        </div>  
+    </div>
+  </body>
+
+  <script>
+
+    user_email = "";
+    user_pass = "";
+
+    //BACK BUTTON
+    function go_back(curr_id)
+    {
+      if (curr_id === "0")
+      {
+        document.getElementById("add_doc").style.display="none";
+        document.getElementById("admin_menu").style.display="block";
+      }
+      else if (curr_id === "1")
+      {
+        document.getElementById("Doctor_Table").style.display="none";
+        document.getElementById("admin_menu").style.display="block";
+      }
+      else if (curr_id === "2")
+      {
+        document.getElementById("view_all_appointments").style.display="none";
+        document.getElementById("admin_menu").style.display="block";
+      }
+      else if (curr_id === "3")
+      {
+        document.getElementById("book_app").style.display="none";
+        document.getElementById("userUI").style.display="block";
+      }
+      else if (curr_id === "4")
+      {
+        document.getElementById("admin_menu").style.display="none";
+        document.getElementById("loginmenu").style.display="block";
+        document.getElementById("sidebar").style.display="block";
+      }
+      else if (curr_id === "5")
+      {
+        document.getElementById("userUI").style.display="none";
+        document.getElementById("loginmenu").style.display="block";
+        document.getElementById("sidebar").style.display="block";
+      }
+      else if (curr_id === "6")
+      {
+        document.getElementById("adminUI").style.display="none";
+        document.getElementById("loginmenu").style.display="block";
+        document.getElementById("sidebar").style.display="block";
+      }
+      else if (curr_id === "7")
+      {
+        document.getElementById("loginUI").style.display="none";
+        document.getElementById("loginmenu").style.display="block";
+        document.getElementById("sidebar").style.display="block";
+      }
+      else if (curr_id === "8")
+      {
+        document.getElementById("view_app").style.display="none";
+        document.getElementById("userUI").style.display="block";
+      }
+      else if (curr_id === "9")
+      {
+        document.getElementById("cancel_app").style.display="none";
+        document.getElementById("view_app").style.display="block";
+      }
+      else if (curr_id === "10")
+      {
+        document.getElementById("apps_table").style.display="none";
+        document.getElementById("admin_menu").style.display="block";
+      }
+      else if (curr_id === "11")
+      {
+        document.getElementById("registerUI").style.display="none";
+        document.getElementById("loginUI").style.display="block";
+      }
+      else if (curr_id === "12")
+      {
+        document.getElementById("res_app").style.display="none";
+        document.getElementById("view_app").style.display="block";
+      }
+    }
+
+    //MAIN MENU FUNCTIONS:
+    function adminLogin()
+    {
+      document.getElementById("adminUI").style.display="block";
+      document.getElementById("loginmenu").style.display="none";
+    }
+    function alogin()
+    {
+      pywebview.api.admin_menu(document.getElementById("apass").value).then(display_admin);   
+    }
+    function display_admin(data)
+    {
+      if(data)
+      {
+        document.getElementById("adminwrpass").innerText = "";
+        document.getElementById("loginUI").style.display="none";
+        document.getElementById("adminUI").style.display="none";
+        document.getElementById("admin_menu").style.display="block";
+      }
+      else
+      {
+        document.getElementById("adminwrpass").innerText = "Invalid password";
+      }
+    }
+    function patientLogin()
+    {
+      document.getElementById("loginUI").style.display="block";
+      document.getElementById("loginmenu").style.display="none";
+      document.getElementById("registerUI").style.display="none";
+    }
+    function ulogin()
+    {
+      user_email = document.getElementById("uname").value;
+      user_pass = document.getElementById("pass").value;
+      pywebview.api.user_menu(document.getElementById("uname").value,
+      document.getElementById("pass").value).then(display_user);   
+    }
+    function register()
+    {
+      document.getElementById("loginUI").style.display="none";
+      document.getElementById("registerUI").style.display="block";
+    }
+    function uregister()
+    {
+      if (document.getElementById("pass1").value === document.getElementById("pass2").value)
+      {
+      pywebview.api.patient_register(document.getElementById("uname1").value, 
+      document.getElementById("pass1").value).then(display_register); 
+      document.getElementById("regwrpass").innerText = "";
+      }
+      else
+      {
+        document.getElementById("regwrpass").innerText = "Passwords do not match";
+      }  
+    }
+    function display_register(result)
+    {
+      if (result[0] === '2')
+      {
+        document.getElementById("registerUI").style.display="none";
+        document.getElementById("registered").style.display="block";
+        document.getElementById("regwrpass").innerText = "";
+      }
+      else if (result[0] === '0')
+      {
+        document.getElementById("regwrpass").innerText = result[1];
+      }
+      else if (result[0] === '1')
+      {
+        document.getElementById("regwrpass").innerText = result[1];
+      }
+    }
+    function ok_registered()
+    {
+      document.getElementById("registered").style.display="none";
+      document.getElementById("loginUI").style.display="block";
+    }
+    function display_user(data) 
+    {
+      if(data)
+      {
+        document.getElementById("loginUI").style.display="none";
+        document.getElementById("userUI").style.display="block";
+      }
+      else
+      {
+        document.getElementById("userwrpass").innerText = "Invalid Email ID or Password";
+      }
+    }
+
+    //ADMIN MENU FUNCTIONS:
+    //ADD DOCTOR:
+    function add_doc()
+    {
+      document.getElementById("add_doc").style.display="block";
+      document.getElementById("userUI").style.display="none";
+      document.getElementById("admin_menu").style.display="none";
+    }
+    function check_button_2()
+    {
+      if (document.getElementById("doc_name").value != "" && 
+        document.getElementById("doc_department").value != "")
+      {
+        document.getElementById("add_doc_submit").disabled = false;
+      }
+      else
+      {
+        document.getElementById("add_doc_submit").disabled = true;
+      }
+
+    }
+    function add_doc_submit()
+    {
+      pywebview.api.add_doctor(document.getElementById("doc_name").value,
+        document.getElementById("doc_department").value);
+    }
+    function doc_added_submit()
+    {
+      document.getElementById("add_doc").style.display="none";
+      document.getElementById("doc_added").style.display="block";
+    }
+    function ok_submitted_new_doc()
+    {
+      document.getElementById("add_doc").style.display="none";
+      document.getElementById("doc_added").style.display="none";
+      document.getElementById("admin_menu").style.display="block";
+    }
+    //VIEW DOCTORS:
+    function del_doc()
+    {
+      document.getElementById("Doctor_Table").style.display="block";
+      document.getElementById("admin_menu").style.display="none";
+      pywebview.api.view_all_doctors().then(display_view_doc);
+    }
+    function display_view_doc(result)
+    {
+      document.getElementById("Doc_data").innerHTML = result;
+    }
+    function remove_doc(doc_id)
+    {
+      pywebview.api.delete_doctor(doc_id).then(display_del_doc);
+    }
+    function display_del_doc(result)
+    {
+      document.getElementById("removed_doc").style.display="block";
+      document.getElementById("Doctor_Table").style.display="none";
+    }
+    function ok_removed_doc()
+    {
+      document.getElementById("removed_doc").style.display="none";
+      document.getElementById("admin_menu").style.display="block";
+    }
+    //VIEW APPOINTMENTS:
+    function view_all_appointments()
+    {
+      document.getElementById("view_all_appointments").style.display="block";
+      document.getElementById("admin_menu").style.display="none";
+      pywebview.api.view_departments().then(display_department);
+    }
+    function display_department(result)
+    {
+      for (i=0; i<result.length; i+=1)
+      {
+        document.getElementById("department").insertAdjacentHTML("beforeend",'<option value = "'+ result[i] +'">'+ result[i] + '</option>'); 
+      }
+    }
+    function display_doc(result)
+    {
+      html = "<option value=''>Select Doctor</option>";
+      for (i=0; i<result.length; i+=1)
+      {
+        html = html + '<option value = "'+ result[i] +'">'+ result[i] + '</option>';
+      }
+      document.getElementById("doctor").innerHTML = html;
+    }
+    function activ_doc()
+    {
+      if (document.getElementById("department").value != "")
+      {
+        pywebview.api.view_doctors(document.getElementById("department").value).then(display_doc);
+        document.getElementById("doctor").disabled = false;
+      }
+      else
+      {
+        document.getElementById("doctor").disabled = true;
+        document.getElementById("doctor").innerHTML = "";
+      }
+    }
+    function check_button_3()
+    {
+      if (document.getElementById("department").value != "" &&
+        document.getElementById("doctor").value != "")
+      {
+        document.getElementById("view_all_appointments_submit").disabled = false;
+      }
+      else
+      {
+        document.getElementById("view_all_appointments_submit").disabled = true;
+      }
+    }
+    function view_all_appointments_submit()
+    {
+      pywebview.api.view_appointments_doctor(document.getElementById("doctor").value).then(display_view_appointments_doc);     
+    }
+    function display_view_appointments_doc(result)
+    {
+      document.getElementById("view_all_appointments").style.display="none";
+      document.getElementById("apps_table").style.display="block";
+      document.getElementById("app_data").innerHTML = result;
+    }
+
+    //PATIENT MENU FUNCTIONS:
+    //BOOK APPOINTMENT:
+    function book_app()
+    {
+      document.getElementById("book_app").style.display="block";
+      document.getElementById("userUI").style.display="none";
+      pywebview.api.view_departments().then(display_departments);
+    }
+    function display_departments(result)
+    {
+      for (i=0; i<result.length; i+=1)
+      {
+        document.getElementById("departments").insertAdjacentHTML("beforeend",'<option value = "'+ result[i] +'">'+ result[i] + '</option>'); 
+      }
+    }
+    function display_doctors(result)
+    {
+      html = "<option value=''>Select Doctor</option>";
+      for (i=0; i<result.length; i+=1)
+      {
+        html = html + '<option value = "'+ result[i] +'">'+ result[i] + '</option>';
+      }
+      document.getElementById("doctors").innerHTML = html;
+    }
+    function activate_doctors()
+    {
+      if (document.getElementById("departments").value != "")
+      {
+        pywebview.api.view_doctors(document.getElementById("departments").value).then(display_doctors);
+        document.getElementById("doctors").disabled = false;
+      }
+      else
+      {
+        document.getElementById("doctors").disabled = true;
+        document.getElementById("doctors").innerHTML = "";
+      }
+    }
+    function check_button_1()
+    {
+      if (document.getElementById("departments").value != "" &&
+        document.getElementById("doctors").value != "" && 
+        document.getElementById("p_name").value != "" &&
+        document.getElementById("p_phone").value != "" &&
+        document.getElementById("app_date").value != "" &&
+        document.getElementById("app_time").value != "")
+      {
+        document.getElementById("book_app_submit").disabled = false;
+      }
+      else
+      {
+        document.getElementById("book_app_submit").disabled = true;
+      }
+
+    }
+    function book_app_submit()
+    {
+      pywebview.api.book_appointment(document.getElementById("departments").value,
+        document.getElementById("doctors").value,
+        document.getElementById("p_name").value,
+        document.getElementById("p_phone").value,
+        document.getElementById("app_date").value,
+        document.getElementById("app_time").value,
+        document.getElementById("uname").value).then(app_booked_submit);
+    }
+    function app_booked_submit(result)
+    {
+      if (result[0] === "1")
+      {
+        document.getElementById("alrbookapp").innerHTML = result[1];
+        
+      }
+      else
+      {
+        document.getElementById("book_app").style.display="none";
+        document.getElementById("app_booked").style.display="block";
+      }
+    }
+    function ok_submitted_app()
+    {
+      document.getElementById("book_app").style.display="none";
+      document.getElementById("app_booked").style.display="none";
+      document.getElementById("userUI").style.display="block";
+    }
+    //VIEW APPOINTMENT:
+    function check_apps()
+    {
+      pywebview.api.view_appointments(document.getElementById("uname").value).then(display_view_appointments);
+    }
+    function view_app(result)
+    {
+      pywebview.api.view_appointments(document.getElementById("uname").value).then(display_view_appointments);
+      document.getElementById("view_app").style.display="block";
+      document.getElementById("userUI").style.display="none";
+      
+    }
+    function display_view_appointments(result)
+    {
+      if (result[0] === "1")
+      {
+        document.getElementById("noapps").innerHTML = result[1];
+      }
+      else
+      {
+        document.getElementById("noapps").innerHTML = "";
+        document.getElementById("userUI").style.display="none";
+        document.getElementById("view_app").style.display="block";
+        document.getElementById("apps_data").innerHTML = result;
+      }
+    }
+    //RESCHEDULE APPOINTMENT:
+    function check_button_4()
+    {
+      if (document.getElementById("res_app_date").value != "" &&
+        document.getElementById("res_app_time").value != "")
+      {
+        document.getElementById("res_app_submit_button").disabled = false;
+      }
+      else
+      {
+        document.getElementById("res_app_submit_button").disabled = true;
+      }
+    }
+    function res_app()
+    {
+      document.getElementById("res_app").style.display="block";
+      document.getElementById("view_app").style.display="none";
+    }
+    function res_app_submit()
+    {
+      pywebview.api.reschedule_appointment(document.getElementById("res_app_date").value,
+        document.getElementById("res_app_time").value);
+    }
+    function app_rescheduled_submit()
+    {
+      document.getElementById("res_app").style.display="none";
+      document.getElementById("app_rescheduled").style.display="block";
+    }
+    function ok_rescheduled_app()
+    {
+      document.getElementById("app_rescheduled").style.display="none";
+      document.getElementById("userUI").style.display="block";
+    }
+    //CANCEL APPOINTMENT:
+    function cancel_app()
+    {
+      document.getElementById("cancel_app").style.display="block";
+      document.getElementById("view_app").style.display="none";
+    }
+    function cancel_app_submit()
+    {
+      pywebview.api.cancel_appointment();
+    }
+    function app_cancelled_submit()
+    {
+      document.getElementById("cancel_app").style.display="none";
+      document.getElementById("app_cancelled").style.display="block";
+    }
+    function ok_cancelled_app()
+    {
+      document.getElementById("app_cancelled").style.display="none";
+      document.getElementById("userUI").style.display="block";
+    }
+  
+  </script>
+  
+
+  <style>
+    body{
+    font-family: museo, serif;
+    font-weight: 300;
+    font-style: normal;
+    }
+    input{
+    padding: 10px; 
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    font-family: museo, serif;
+    font-weight: 300;
+    font-style: normal;
+    width: 250px;
+    }
+    .adminUI{
+    display: None;
+    }
+    *{
+    padding: 0;
+    margin: 0;
+    }
+    .heading{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding-top: -20%;
+    font-size: 50px;
+    font-family: museo, serif;
+    font-weight: 300;
+    font-style: normal;
+    }  
+    .main-screen{
+    display: flex;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgba(0,0,0,.3);
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    background: rgb(153, 219, 233);
+    background: radial-gradient(circle, (rgb(154, 225, 233) 0%,rgb(176, 220, 240)) 100%, rgb(195, 237, 240) 100%); 
+    }
+    .sidebar{
+    flex-basis: 40%;
+    display:block;
+    background-image: url('https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdXB3azYyMDY5NjEwLXdpa2ltZWRpYS1pbWFnZS1rb3dmcml2Zi5qcGc.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    }
+    .rightbar{
+    position : relative;
+    flex-basis: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    button{
+    display: block;
+    margin-top:20px;
+    background-color: rgb(23, 132, 160);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding:10px;
+    width: 100px;
+    height: auto;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-family: museo, serif;
+    font-weight: 300;
+    font-style: normal;
+    }
+    .h1{
+    font-size: 30px;
+    font-family: museo, serif;
+    text-align: center;
+    font-weight: 300;
+    font-style: normal;
+    }
+    loginbutton{
+    display: block;
+    margin-top:20px;
+    background-color: rgb(23, 132, 160);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding:10px;
+    width: 260px;
+    height: auto;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-family: museo, serif;
+    font-weight: 300;
+    font-style: normal;
+    }
+    .userUI{
+    display: none;
+    }
+    .loginUI{
+    display: none;
+    }
+    .book_app{
+    display: none;
+    } 
+    select{
+    padding: 10px; 
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    width: 280px;
+    }
+    .app_menu{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-gap: 50px;
+    }
+    .app_booked{
+    display: none;
+    }
+    .add_doc{
+    display: none;
+    }
+    .doc_added{
+    display: none;
+    }
+    .app_booked_submit{
+    display: none;
+    }
+    .add_doc_submit{
+    display: none;
+    }
+    .doc_added_submit{
+    display: none;
+    }
+    .adminUI{
+    display: none;
+    }
+    .apps_table_container{
+    display: none;
+    width: 100%;
+    }
+    .admin_menu{
+    display: none;
+    }
+    ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    }
+    .Doctor_Column_Header{
+        background-color: rgb(29, 171, 207);
+        font-size: small;
+        color: white;
+        text-align: center;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+        border-radius: 10px;
+        padding: 5px;
+        width: 100%;
+        font-family: museo, serif;
+        font-weight: 300;
+        font-style: normal;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .Table_Column{
+        display: inline-block;
+        flex-basis: auto;
+        padding: 10px;
+        margin: 20px;
+    }
+    li{
+        padding: 25px 25px;
+    }
+    .Doctor_Table_container{
+    display: none;
+
+    }
+    .removed_doc{
+    display: none;
+    }
+    .view_all_appointments{
+    display: none;
+    }
+    .view_all_appointment_menu{
+    display: none;
+    }
+    .apps_table{
+    display: none;
+    }
+    .view_app{
+    display: none;
+    }
+    .res_app{
+    display: none;
+    }
+    .app_rescheduled{
+    display: none;
+    }
+    .app_cancelled{
+    display: none;
+    }
+    .cancel_app{
+    display: none;
+    }
+    .back_button{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-left: 10px;
+    }
+    i{
+    cursor: pointer;
+    font-size: 30px;
+    }
+    .registered{
+    display: none;
+    }
+    .fi-br-arrow-left{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 10px;
+    cursor: pointer;
+    }
+    p{
+    font-weight: 400px;
+    }
+
+  </style>
+
+</html>
