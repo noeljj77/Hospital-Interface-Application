@@ -6,6 +6,7 @@ Interface - html
 Backend - Python, MySql Database
 
 
+
 ADMIN MENU:
 
 -> Add a new Doctor
@@ -13,6 +14,7 @@ ADMIN MENU:
 -> View list of Doctors + Remove a Doctor
 
 -> View all ppointments of a Doctor
+
 
 
 PATIENT MENU:
