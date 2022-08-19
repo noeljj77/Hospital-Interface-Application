@@ -2,8 +2,8 @@
 Basic Hospital Interface with various ADMIN and PATIENT controls
 
 
-Interface - html
-Backend - Python, MySql Database
+Interface - HTML5, CSS
+Backend - JavaScript, Python, MySql Database
 
 
 
