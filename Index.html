@@ -206,13 +206,9 @@
         </div>
         <!--VIEW APPOINTMENT-->
         <div class="view_app" id = "view_app">
-          <h1 style="top: 40px;">APPOINTMENT</h1>
-          <div class = "apps_data" id = "apps_data">
-          </div>
+          <center><div class = "apps_data" id = "apps_data" style="text-align: center;">
+          </div></center>          
           <br><br>
-          <button type = "button" onclick="res_app();" style="width: 250px;font-size: 15px;">Reschedule Appointment</button>
-          <br>
-          <button type = "button" onclick="cancel_app();" style="width: 250px;font-size: 15px;">Cancel Appointment</button>
           <i onclick="go_back('8');" class="fi-br-arrow-left"></i>
         </div>
         <!--RESCHEDULE APPOINTMENT-->
@@ -243,9 +239,7 @@
         </div>  
     </div>
   </body>
-
   <script>
-
     user_email = "";
     user_pass = "";
 
@@ -696,10 +690,7 @@
       document.getElementById("app_cancelled").style.display="none";
       document.getElementById("userUI").style.display="block";
     }
-  
   </script>
-  
-
   <style>
     body{
     font-family: museo, serif;
@@ -769,6 +760,7 @@
     margin-top:20px;
     background-color: rgb(23, 132, 160);
     border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
     border: none;
     outline: none;
     padding:10px;
@@ -792,6 +784,7 @@
     margin-top:20px;
     background-color: rgb(23, 132, 160);
     border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
     border: none;
     outline: none;
     text-align: center;
@@ -940,7 +933,41 @@
     p{
     font-weight: 400px;
     }
-
+    .card{
+    overflow: hidden;
+    margin-top: 50px;
+    background-color: #E9E9E9;
+    width: 350px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgba(0,0,0,0.5);
+    }
+    .card-top{
+      height: 5%;
+      width: 100%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      color:white;
+      background-color: rgb(23, 132, 160);
+    }
+    .card-bottom{
+      padding: 15px;
+    }
+    .card-btn{
+      border-radius: 100px;
+      padding: 10px;
+      border: 3px solid rgb(23, 132, 160);
+      width: 90%;
+      background-color:rgb(23, 132, 160);
+      margin: 20px;
+      color: white;
+      box-shadow: 0px 0px 15px rgba(0,0,0,.5);
+    }
+    .card-btn:hover{  
+      background-color: rgba(0,0,0,0);
+      color: black;
+    }
   </style>
-
 </html>
