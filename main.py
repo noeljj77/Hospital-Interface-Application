@@ -170,21 +170,27 @@ class api:
                 dte = str(i[5])
                 dte = dte.split("-")
                 dte = str(dte[2]+"-"+dte[1]+"-"+dte[0])
-                html = html + '''<table>
-                <tr><td><h3>Appointment ID: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                <br>
-                <tr><td><h3>Department: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                <br>
-                <tr><td><h3>Doctor: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                <br>
-                <tr><td><h3>Patient Name: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                <br>
-                <tr><td><h3>Mobile No: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                <br>
-                <tr><td><h3>Date: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                <br>
-                <tr><td><h3>Time: </h3></td><td>      </td><td><h3>{}</h3></td></tr>
-                </table>'''.format(i[0],i[1],i[2],i[3],i[4],dte,i[6])
+                html = html + '''<div class="card">
+                    <div class="card-top">{}</div>
+                    <div class="card-bottom">
+                    <br><br>
+                    <h3>Appointment ID: {}</h3>
+                    <br><br>
+                    <h3>Department: {}</h3>
+                    <br><br>
+                    <h3>Doctor: {}</h3>
+                    <br><br>
+                    <h3>Date: {}</h3>
+                    <br><br>
+                    <h3>Time: {}</h3>
+                    <br><br>
+                    
+                    <button class="card-btn" onclick="res_app();">RESCHEDULE</button>
+                    <button class="card-btn" onclick="cancel_app();">CANCEL</button>
+                    </div>
+                
+                </div>
+                '''.format(i[3],i[0],i[1],i[2],dte,i[6])
                 global res_id
                 res_id = i[0]
             return html
