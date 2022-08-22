@@ -1,7 +1,7 @@
 import mysql.connector
 import webview
 
-mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "noel", database = "Hospital")  
+mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "", database = "Hospital")  
 mycursor = mydb.cursor()
 
 # DOCTOR TABLE:
