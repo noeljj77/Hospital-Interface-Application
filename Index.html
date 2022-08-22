@@ -46,7 +46,7 @@
           <i onclick="go_back('1');" class="fi-br-arrow-left"></i>
           <ul class = "Doctor_Table">
             <li>
-              <div class = "Doctor_Column_Header">
+              <div class = "Doctor_Column_Header" style="background-color: rgb(17, 127, 154);">
                     <div class = "Table_Column"  style="flex-basis: 2%;">
                         <h1>ID</h1>
                     </div>
@@ -62,7 +62,6 @@
                 </div>
             </li>
             <div id="Doc_data">
-
             </div>
         </ul>
         </div>
@@ -83,13 +82,13 @@
           <select id="doctor" onchange="check_button_3()"> 
             <option value="">Select Doctor</option>
           </select>
-          <button type = "button" onclick="view_all_appointments_submit();" disabled="True" id ="view_all_appointments_submit" style="width: 250px;">Submit</button>
+          <button type = "button" onclick="view_all_appointments_submit();" disabled="True" id ="view_all_appointments_submit" style="width: 280px;">Submit</button>
         </div>
         <div id = "apps_table" class = "apps_table_container">
           <center><h1>APPOINTMENTS</h1></center>
           <ul>
             <li>
-              <div class = "Doctor_Column_Header">
+              <div class = "Doctor_Column_Header" style="background-color: rgb(17, 127, 154);"> 
                 <div class = "Table_Column" style="flex-basis: 2%;">
                   <h2>ID</h2>
                   </div>
@@ -123,10 +122,11 @@
       <!--MAIN MENU-->
       <div id="loginmenu">
         <div class="heading">        
-          <h2>RADIANT HEALTHCARE</h2>
+          <h2>MEDLIFE HEALTHCARE</h2>
         </div>
-        <center><button onclick="adminLogin()" style="font-size: 25px;width: 150px;">ADMIN LOGIN</button></center>
-        <center><button onclick="patientLogin()" style="font-size: 25px;width: 150px;">PATIENT LOGIN</button></center>
+        <br><br>
+        <center><button onclick="adminLogin()" style="font-size: 30px;width: 250px;">ADMIN LOGIN</button></center>
+        <center><button onclick="patientLogin()" style="font-size: 30px;width: 250px;">PATIENT LOGIN</button></center>
       </div>
 
       <!--PATIENT INTERFACE-->
@@ -189,7 +189,7 @@
           <input type = "text" placeholder="Enter Full Name" id="p_name" oninput="check_button_1()">
           <br><br>
           <p><b>Mobile Number:</b></p>
-          <input type = "number" placeholder="Enter Mobile Number" id="p_phone" oninput="check_button_1()">
+          <input type = "tel" placeholder="Enter Mobile Number" id="p_phone" maxlength="10" oninput="check_button_1()">
           <br><br>
           <p><b>Date:</b></p>
           <input type = "date" id="app_date" oninput="check_button_1()">
@@ -276,7 +276,6 @@
       {
         document.getElementById("userUI").style.display="none";
         document.getElementById("loginmenu").style.display="block";
-        document.getElementById("sidebar").style.display="block";
       }
       else if (curr_id === "6")
       {
@@ -400,6 +399,7 @@
       {
         document.getElementById("loginUI").style.display="none";
         document.getElementById("userUI").style.display="block";
+        document.getElementById("userwrpass").innerText="";
       }
       else
       {
@@ -475,6 +475,8 @@
       document.getElementById("view_all_appointments").style.display="block";
       document.getElementById("admin_menu").style.display="none";
       pywebview.api.view_departments().then(display_department);
+      document.getElementById("department").innerHTML = "<option value=''>Select Department</option>";
+      document.getElementById("doctor").innerHTML = "<option value=''>Select Doctor</option>";
     }
     function display_department(result)
     {
@@ -535,6 +537,8 @@
       document.getElementById("book_app").style.display="block";
       document.getElementById("userUI").style.display="none";
       pywebview.api.view_departments().then(display_departments);
+      document.getElementById("departments").innerHTML = "<option value=''>Select Department</option>";
+      document.getElementById("doctors").innerHTML = "<option value=''>Select Doctor</option>";
     }
     function display_departments(result)
     {
@@ -700,11 +704,15 @@
     input{
     padding: 10px; 
     border: 3px solid rgb(0, 0, 0);
-    border-radius: 5px;
+    border-radius: 10px;
     font-family: museo, serif;
     font-weight: 300;
     font-style: normal;
     width: 250px;
+    }
+    input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
     }
     .adminUI{
     display: None;
@@ -844,31 +852,30 @@
     width: 100%;
     }
     .admin_menu{
-    display: none;
+      display: none;
     }
     ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
     }
     .Doctor_Column_Header{
-        background-color: rgb(29, 171, 207);
-        font-size: small;
-        color: white;
-        text-align: center;
-        font-size: 15px;
-        letter-spacing: 0.3px;
-        border-radius: 10px;
-        padding: 5px;
-        width: 100%;
-        font-family: museo, serif;
-        font-weight: 300;
-        font-style: normal;
-        font-weight: bold;
-        display: flex;
-        justify-content: space-between;
-        
+      background-color: rgb(29, 171, 207);
+      font-size: small;
+      color: white;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      border-radius: 10px;
+      padding: 5px;
+      width: 100%;
+      font-family: museo, serif;
+      font-weight: 300;
+      font-style: normal;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
     }
     .Table_Column{
         display: inline-block;
@@ -880,8 +887,10 @@
         padding: 25px 25px;
     }
     .Doctor_Table_container{
-    display: none;
-
+      padding-top: 10px;
+      display: none;
+      height: 100%;
+      width: 80%;
     }
     .removed_doc{
     display: none;
@@ -964,10 +973,6 @@
       margin: 20px;
       color: white;
       box-shadow: 0px 0px 15px rgba(0,0,0,.5);
-    }
-    .card-btn:hover{  
-      background-color: rgba(0,0,0,0);
-      color: black;
     }
   </style>
 </html>
