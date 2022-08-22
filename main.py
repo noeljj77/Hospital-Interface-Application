@@ -1,7 +1,7 @@
 import mysql.connector
 import webview
 
-mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "1234", database = "Hospital")  
+mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "noel", database = "Hospital")  
 mycursor = mydb.cursor()
 
 # DOCTOR TABLE:
@@ -82,25 +82,25 @@ class api:
                 html = html + '''<li>
                 <div class = "Doctor_Column_Header">
                 <div class = "Table_Column" style="flex-basis: 2%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 15%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 25%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 25%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 25%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 25%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 25%;">
-                    <h2>{}</h2>
+                    <h3>{}</h3>
                 </div>
                 </div>
                 </li>'''.format(i[0],i[1],i[2],i[3],i[4],i[5],i[6])
@@ -185,8 +185,8 @@ class api:
                     <h3>Time: {}</h3>
                     <br><br>
                     
-                    <button class="card-btn" onclick="res_app();">RESCHEDULE</button>
-                    <button class="card-btn" onclick="cancel_app();">CANCEL</button>
+                    <button class="card-btn" onclick="res_app();">RESCHEDULE APPOINTMENT</button>
+                    <button class="card-btn" onclick="cancel_app();">CANCEL APPOINTMENT</button>
                     </div>
                 
                 </div>
@@ -210,7 +210,7 @@ class api:
 
 
 api = api()
-with open("Index.html", "r") as f:
+with open("Hospital.html", "r") as f:
     r = f.read()
-    webview.create_window(title='Radiant Healthcare', html=r, js_api=api)
+    webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
     webview.start()
