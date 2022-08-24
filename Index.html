@@ -9,7 +9,7 @@
   <body>
     <div class="main-screen" >   
  
-      <!--ADMIN INTERFACE-->
+        <!--ADMIN INTERFACE-->
         <!--ADMIN LOGIN-->
         <div class = "adminUI" id="adminUI" style="text-align: center;">
           <i onclick="go_back('6');" class="fi-br-arrow-left"></i>
@@ -41,7 +41,7 @@
           <h2>Doctor has been added successfully</h2>
           <center><button type="button" onclick="ok_submitted_new_doc()" id ="doc_added_submit">OK</button></center>
         </div>
-        <!--REMOVE DOCTOR-->
+        <!--VIEW DOCTOR-->
         <div id = "Doctor_Table" class = "Doctor_Table_container">
           <i onclick="go_back('1');" class="fi-br-arrow-left"></i>
           <ul class = "Doctor_Table">
@@ -64,6 +64,12 @@
             <div id="Doc_data">
             </div>
         </ul>
+        </div>
+        <!--REMOVE DOCTOR-->
+        <div class="remove_doc" id="remove_doc">
+          <h2>Are you sure you want to remove this Doctor?</h2>
+          <center><button type = "button" onclick="remove_doc();" id = "remove_doc_submit" style="width: 150px;font-size: 15px;">Yes</button></center>
+          <center><button type = "button" onclick="go_back('13');" style="width: 150px;font-size: 15px;">No</button></center>
         </div>
         <div class="removed_doc" id="removed_doc">
           <h2>Doctor has been removed successfully</h2>
@@ -90,26 +96,26 @@
             <li>
               <div class = "Doctor_Column_Header" style="background-color: rgb(17, 127, 154);"> 
                 <div class = "Table_Column" style="flex-basis: 2%;">
-                  <h2>ID</h2>
-                  </div>
-                  <div class = "Table_Column" style="flex-basis: 15%;">
-                      <h2>Department</h2>
-                  </div>
-                  <div class = "Table_Column" style="flex-basis: 25%;">
-                      <h2>Doctor</h2>
-                  </div>
-                  <div class = "Table_Column" style="flex-basis: 25%;">
-                      <h2>Patient Name</h2>
-                  </div>
-                  <div class = "Table_Column" style="flex-basis: 25%;">
-                      <h2>Mobile No.</h2>
-                  </div>
-                  <div class = "Table_Column" style="flex-basis: 25%;">
-                      <h2>Date</h2>
-                  </div>
-                  <div class = "Table_Column" style="flex-basis: 25%;">
-                      <h2>Time</h2>
-                </div>
+                    <h2>ID</h2>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 15%;">
+                        <h2>Department</h2>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 25%;">
+                        <h2>Doctor</h2>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 25%;">
+                        <h2>Patient Name</h2>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 25%;">
+                        <h2>Mobile No.</h2>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 25%;">
+                        <h2>Date</h2>
+                    </div>
+                    <div class = "Table_Column" style="flex-basis: 25%;">
+                        <h2>Time</h2>
+                    </div>
                 </div>
               </li>
               <div id="app_data">
@@ -189,7 +195,7 @@
           <input type = "text" placeholder="Enter Full Name" id="p_name" oninput="check_button_1()">
           <br><br>
           <p><b>Mobile Number:</b></p>
-          <input type = "tel" placeholder="Enter Mobile Number" id="p_phone" maxlength="10" oninput="check_button_1()">
+          <input type = "tel" placeholder="Enter Mobile Number" id="p_phone" maxlength="9" oninput="check_button_1()">
           <br><br>
           <p><b>Date:</b></p>
           <input type = "date" id="app_date" oninput="check_button_1()">
@@ -242,6 +248,7 @@
   <script>
     user_email = "";
     user_pass = "";
+    var doc_ID = "";
 
     //BACK BUTTON
     function go_back(curr_id)
@@ -313,6 +320,11 @@
       {
         document.getElementById("res_app").style.display="none";
         document.getElementById("view_app").style.display="block";
+      }
+      else if (curr_id === "13")
+      {
+        document.getElementById("Doctor_Table").style.display="block";
+        document.getElementById("remove_doc").style.display="none";
       }
     }
 
@@ -455,12 +467,19 @@
     {
       document.getElementById("Doc_data").innerHTML = result;
     }
-    function remove_doc(doc_id)
+    function remove_doc_confirm(doc_id)
     {
-      pywebview.api.delete_doctor(doc_id).then(display_del_doc);
+      window.doc_ID = doc_id
+      document.getElementById("Doctor_Table").style.display="none";
+      document.getElementById("remove_doc").style.display="block";
+    }
+    function remove_doc()
+    {
+      pywebview.api.delete_doctor(doc_ID).then(display_del_doc);
     }
     function display_del_doc(result)
     {
+      document.getElementById("remove_doc").style.display="none";
       document.getElementById("removed_doc").style.display="block";
       document.getElementById("Doctor_Table").style.display="none";
     }
@@ -768,7 +787,7 @@
     margin-top:20px;
     background-color: rgb(23, 132, 160);
     border-radius: 5px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     border: none;
     outline: none;
     padding:10px;
@@ -852,6 +871,9 @@
     width: 100%;
     }
     .admin_menu{
+      display: none;
+    }
+    .remove_doc{
       display: none;
     }
     ul{
