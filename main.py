@@ -1,7 +1,7 @@
 import mysql.connector
 import webview
 
-mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "", database = "Hospital")  
+mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "noel", database = "Hospital")  
 mycursor = mydb.cursor()
 
 # DOCTOR TABLE:
@@ -125,7 +125,7 @@ class api:
                     <h1>{}</h1>
                 </div>
                 <div class = "Table_Column" style="flex-basis: 25%;">
-                    <i class="fi-rr-trash" id = "{}" onclick = "remove_doc(this.id)"></i>
+                    <i class="fi-rr-trash" id = "{}" onclick = "remove_doc_confirm(this.id)"></i>
                 </div>
             </div>
             </li>'''.format(i[0],i[1],i[2],i[0])
@@ -208,9 +208,8 @@ class api:
         mycursor.execute("DELETE FROM Appointments WHERE App_ID = {}".format(res_id))
         mydb.commit()
 
-
 api = api()
 with open("Hospital.html", "r") as f:
     r = f.read()
     webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
-    webview.start()
+    webview.start(debug=True)
