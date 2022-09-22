@@ -14,7 +14,7 @@ ADMIN MENU:
 
 -> View list of Doctors + Remove a Doctor
 
--> View all ppointments of a Doctor
+-> View all appointments of a Doctor
 
 
 
