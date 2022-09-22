@@ -1,7 +1,7 @@
 import mysql.connector
 import webview
 
-mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "noel", database = "Hospital")  
+mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "", database = "Hospital")  
 mycursor = mydb.cursor()
 
 # DOCTOR TABLE:
@@ -209,7 +209,10 @@ class api:
         mydb.commit()
 
 api = api()
-with open("Index.html", "r") as f:
-    r = f.read()
-    webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
-    webview.start(debug=True)
+with open("Hospital.html", "r") as f:
+    try:
+        r = f.read()
+        webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
+        webview.start(debug=True)
+    except Exception as E:
+        print(E)
