@@ -1,4 +1,4 @@
-# Hospital-Information-System
+# Hospital-Interface-Application
 Basic Hospital Interface with various ADMIN and PATIENT controls
 
 
