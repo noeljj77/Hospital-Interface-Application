@@ -209,7 +209,7 @@ class api:
         mydb.commit()
 
 api = api()
-with open("Hospital.html", "r") as f:
+with open("Index.html", "r") as f:
     try:
         r = f.read()
         webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
