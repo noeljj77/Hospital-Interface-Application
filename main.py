@@ -1,8 +1,7 @@
 import mysql.connector
 import webview
-import time
 
-mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "", database = "Hospital")  
+mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "****", database = "Hospital")  
 mycursor = mydb.cursor()
 
 '''#DOCTOR TABLE:
@@ -212,11 +211,12 @@ class api:
         global res_id
         mycursor.execute("DELETE FROM Appointments WHERE App_ID = {}".format(res_id))
         mydb.commit()
+        
 api = api()
 with open("Hospital.html", "r") as f:
     try:
         r = f.read()
-        webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
+        webview.create_window(title='Medlife Healthcare', html=r, js_api=api,fullscreen=True)
         webview.start(debug=True)
     except Exception as E:
         print(E)
