@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  
   <head>
     <meta charset="utf-8">
     <title>
@@ -16,7 +14,7 @@
 
   <body>
 
-    <img  class="hospital-logo" src="https://i.pinimg.com/originals/04/cb/23/04cb2335e4bdaa22771e62d8eb9a5c7f.jpg" alt="Medlife_Logo">
+    <img  id="hospital-logo" class="hospital-logo" src="https://i.pinimg.com/originals/04/cb/23/04cb2335e4bdaa22771e62d8eb9a5c7f.jpg" alt="Medlife_Logo">
     <div class="main-screen" >   
  
         <!--ADMIN INTERFACE-->
@@ -321,6 +319,7 @@
       {
         document.getElementById("apps_table").style.display="none";
         document.getElementById("admin_menu").style.display="block";
+        document.getElementById("hospital-logo").style.display="block"
       }
       else if (curr_id === "11")
       {
@@ -557,6 +556,7 @@
     {
       document.getElementById("view_all_appointments").style.display="none";
       document.getElementById("apps_table").style.display="block";
+      document.getElementById("hospital-logo").style.display="none"
       document.getElementById("app_data").innerHTML = result;
     }
 
