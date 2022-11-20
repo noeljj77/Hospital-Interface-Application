@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+  
   <head>
+    <meta charset="utf-8">
+    <title>
+      MEDLIFE HEALTHCARE
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.typekit.net/wce7xkw.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
   </head>
+
   <body>
+
+    <img  class="hospital-logo" src="https://i.pinimg.com/originals/04/cb/23/04cb2335e4bdaa22771e62d8eb9a5c7f.jpg" alt="Medlife_Logo">
     <div class="main-screen" >   
  
         <!--ADMIN INTERFACE-->
@@ -174,7 +184,7 @@
           <h1 style="top: 40px;position: absolute;margin: 20px;"><center>PATIENT MENU</center></h1>
           <button type = "button" onclick="book_app()" style="width:250px;font-size: 20px;">Book Appointment</button>
           <button type = "button" onclick="check_apps()" style="width:250px;font-size: 20px;">Current Appointment</button>
-          <b><p id="noapps" style="color:red;"></p></b>
+          <b><center><p id="noapps" style="color:red;"></p></center></b>
         </div>
         <!--BOOK APPOINTMENT-->
         <div class="book_app" id="book_app">
@@ -203,7 +213,7 @@
           <p><b>Time:</b></p>
           <input type = "time" id="app_time" oninput="check_button_1()">
           <br><br>   
-          <b><p id="alrbookapp" style="color:red;"></p></b>
+          <b><center><p id="alrbookapp" style="color:red;"></p></center></b>
           <center><button type = "button" onclick="book_app_submit();"  disabled="True" id ="book_app_submit" style="width: 260px;font-size: 20px;">Submit</button></center>
         </div>
         <div class="app_booked" id="app_booked">
@@ -245,6 +255,7 @@
         </div>  
     </div>
   </body>
+
   <script>
     user_email = "";
     user_pass = "";
@@ -714,6 +725,7 @@
       document.getElementById("userUI").style.display="block";
     }
   </script>
+
   <style>
     body{
     font-family: museo, serif;
@@ -729,9 +741,13 @@
     font-style: normal;
     width: 250px;
     }
-    input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    .hospital-logo{
+      max-width: 100px;
+      max-height: 100px;
+      position: absolute;
+      bottom: 70px;
+      right: 70px;
+      z-index: 10;
     }
     .adminUI{
     display: None;
@@ -764,23 +780,6 @@
     align-items: center;
     background: rgb(153, 219, 233);
     background: radial-gradient(circle, (rgb(154, 225, 233) 0%,rgb(176, 220, 240)) 100%, rgb(195, 237, 240) 100%); 
-    }
-    .sidebar{
-    flex-basis: 40%;
-    display:block;
-    background-image: url('https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdXB3azYyMDY5NjEwLXdpa2ltZWRpYS1pbWFnZS1rb3dmcml2Zi5qcGc.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    }
-    .rightbar{
-    position : relative;
-    flex-basis: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     }
     button{
     display: block;
@@ -997,4 +996,5 @@
       box-shadow: 0px 0px 15px rgba(0,0,0,.5);
     }
   </style>
+
 </html>
