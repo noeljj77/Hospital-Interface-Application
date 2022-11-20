@@ -1,22 +1,25 @@
 import mysql.connector
 import webview
+import time
 
 mydb = mysql.connector.connect(host = "localhost", user = "root", passwd = "", database = "Hospital")  
 mycursor = mydb.cursor()
 
-# DOCTOR TABLE:
-# mycursor.execute("CREATE TABLE Doctor(Doc_ID int(4) primary key , Name varchar(100) not null , Department varchar(50) not null)") 
+'''#DOCTOR TABLE:
+mycursor.execute("CREATE TABLE Doctor(Doc_ID int(4) primary key , Name varchar(100) not null , Department varchar(50) not null)") 
 
-# APPOINTMENT TABLE:
-# mycursor.execute("CREATE TABLE Appointments(App_ID int(4) primary key, Department varchar(30), Doctor varchar(100), Patient_Name varchar(100), Mobile_No int, Date date, Time varchar(10),Patient_Mail varchar(50))");
+#APPOINTMENT TABLE:
+mycursor.execute("CREATE TABLE Appointments(App_ID int(4) primary key, Department varchar(30), Doctor varchar(100), Patient_Name varchar(100), Mobile_No int, Date date, Time varchar(10),Patient_Mail varchar(50))");
 
-# USERINFO TABLE:
-# mycursor.execute("CREATE TABLE UserInfo(Patient_Mail varchar(50) primary key, Password varchar(50))")
+#USERINFO TABLE:
+mycursor.execute("CREATE TABLE UserInfo(Patient_Mail varchar(50) primary key, Password varchar(50))")'''
 
 class api:  
 
     res_id = 0
+
     # LOGIN MENU:
+
     # PATIENT LOGIN:
     def user_menu(self,usermail,userpass):
         try:
@@ -56,6 +59,7 @@ class api:
 
 
     # ADMIN MENU FUNCTIONS
+
     # NEW DOCTOR
     def add_doctor(self,doc_name,doc_department):
         mycursor.execute("SELECT Doc_ID FROM Doctor")
@@ -136,8 +140,9 @@ class api:
         mydb.commit()
         return True
     
-    
+
     # PATIENT MENU FUNCTIONS:
+
     # BOOK APPOINTMENT
     def book_appointment(self,department,doctor_name,patient_name,mob_no,date,time,patient_mail):
         mycursor.execute("SELECT App_ID FROM Appointments")
@@ -207,9 +212,8 @@ class api:
         global res_id
         mycursor.execute("DELETE FROM Appointments WHERE App_ID = {}".format(res_id))
         mydb.commit()
-
 api = api()
-with open("Index.html", "r") as f:
+with open("Hospital.html", "r") as f:
     try:
         r = f.read()
         webview.create_window(title='Medlife Healthcare', html=r, js_api=api)
