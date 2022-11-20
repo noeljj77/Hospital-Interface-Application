@@ -12,7 +12,9 @@ ADMIN MENU:
 
 -> Add a new Doctor
 
--> View list of Doctors + Remove a Doctor
+-> View list of Doctors
+
+-> Remove a Doctor
 
 -> View all appointments of a Doctor
 
